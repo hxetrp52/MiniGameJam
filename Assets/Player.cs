@@ -1,4 +1,5 @@
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -39,6 +40,7 @@ public class KartPlayer : MonoBehaviour
 
     public Slider boosterSlider;
     public GameObject[] Booster;
+    public TextMeshProUGUI countText;
 
     void Start()
     {
@@ -136,8 +138,15 @@ public class KartPlayer : MonoBehaviour
     {
         Booster[0].SetActive(false);
         Booster[1].SetActive(false);
+        boosterSlider.value = boosterCharge;
 
-        boosterSlider.value = boosterCharge; 
+        int a = (int)startTimer;
+
+        countText.text = a.ToString();
+        if(startTimer <= 0f)
+        {
+            countText.text = "";
+        }
 
         for (int i = 0; i < boosterStock; i++)
         {
