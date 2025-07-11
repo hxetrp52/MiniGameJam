@@ -1,4 +1,6 @@
+using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class KartPlayer : MonoBehaviour
 {
@@ -33,6 +35,10 @@ public class KartPlayer : MonoBehaviour
     private float visualTilt = 0f;
 
     private float startTimer;
+
+
+    public Slider boosterSlider;
+    public GameObject[] Booster;
 
     void Start()
     {
@@ -128,6 +134,16 @@ public class KartPlayer : MonoBehaviour
 
     void Update()
     {
+        Booster[0].SetActive(false);
+        Booster[1].SetActive(false);
+
+        boosterSlider.value = boosterCharge; 
+
+        for (int i = 0; i < boosterStock; i++)
+        {
+            Booster[i].SetActive(true);
+        }
+
         if (startTimer > 0f)
             return;  // 대기 시간 동안 부스터 사용 제한
 
